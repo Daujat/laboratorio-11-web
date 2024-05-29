@@ -1,0 +1,59 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+    <div class="w-full max-w-md p-8 bg-gray-800 rounded-lg shadow-lg">
+      <h2 class="mb-6 text-4xl font-semibold text-center text-white">Registro</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div class="relative">
+          <label for="username" class="block text-sm font-medium text-white">Nombre de Usuario:</label>
+          <input id="username" type="text" formControlName="username"
+            class="w-full px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md form-input focus:outline-none focus:ring focus:ring-purple-300"
+            placeholder="Ingrese su nombre de usuario...">
+          @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+            <div class="text-sm text-red-500">
+              @if (registerForm.get('username')?.errors?.['required']) {
+                <div>Se requiere nombre de usuario</div>
+              }
+            </div>
+          }
+        </div>
+        <div class="relative">
+          <label for="email" class="block text-sm font-medium text-white">Email:</label>
+          <input id="email" type="email" formControlName="email"
+            class="w-full px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md form-input focus:outline-none focus:ring focus:ring-purple-300"
+            placeholder="Introduce tu correo electrónico...">
+          @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <div class="text-sm text-red-500">
+              @if (registerForm.get('email')?.errors?.['required']) {
+                <div>Correo electronico es requerido</div>
+              }
+              @if (registerForm.get('email')?.errors?.['email']) {
+                <div>Introduzca un correo electrónico válido</div>
+              }
+            </div>
+          }
+        </div>
+        <div class="relative">
+          <label for="password" class="block text-sm font-medium text-white">Contraseña:</label>
+          <input id="password" type="password" formControlName="password"
+            class="w-full px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md form-input focus:outline-none focus:ring focus:ring-purple-300"
+            placeholder="Ingresa tu contraseña...">
+          @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <div class="text-sm text-red-500">
+              @if (registerForm.get('password')?.errors?.['required']) {
+                <div>Se requiere contraseña</div>
+              }
+              @if (registerForm.get('password')?.errors?.['minlength']) {
+                <div>La contraseña debe tener al menos 3 caracteres</div>
+              }
+            </div>
+          }
+        </div>
+        <button type="submit"
+          class="w-full px-4 py-2 font-bold text-white transition duration-300 ease-in-out transform bg-purple-600 rounded-md hover:bg-purple-700 hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-50">Registrarse</button>
+        <div class="text-center">
+          <p class="text-gray-300">¿Ya tienes una cuenta?</p>
+          <a routerLink="/login" class="font-semibold text-purple-400 transition duration-300 ease-in-out hover:text-purple-600 hover:underline">Ingresa aquí</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  
